@@ -1,0 +1,25 @@
+Property Management JavaFX Application
+
+Goals
+
+- Manage multiple properties
+- Manage multiple tenants and multiple properties
+
+-- Main Page
+  - add property
+  - view existing properties
+  - will notify of upcoming vacancies
+
+-- Property Page
+    - image
+    - address
+    - units
+    - monthly recurring bills
+    - will track profit and expenses of all units as a net (cashflow)
+    - will notify of upcoming vacancies
+
+-- Unit page
+    -- will track current tenants info
+    -- will track all past tenants info
+    -- will track people interested in viewing the property
+
