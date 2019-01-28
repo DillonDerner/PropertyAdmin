@@ -54,12 +54,16 @@ create table unit_updates(
 create table tenancy(
    id INT NOT NULL AUTO_INCREMENT,
    unit_id INT NOT NULL,
+   person_id INT NOT NULL,
    move_in_date DATE,
    move_out_date DATE,
    rent_amount DOUBLE NOT NULL,
    PRIMARY KEY (id),
    FOREIGN KEY (unit_id)
         REFERENCES unit(id)
+        ON DELETE CASCADE,
+   FOREIGN KEY (person_id)
+        REFERENCES person(id)
         ON DELETE CASCADE
 );
 

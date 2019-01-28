@@ -9,11 +9,37 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
+import java.sql.*;
+
 public class Main extends Application {
 
     Stage window;
 
     public static void main(String[] args) {
+
+
+
+        String url = "jdbc:mysql://localhost:3306/tenant?autoReconnect=true&useSSL=false";
+        String user = "root";
+        String password = "09121992";
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection connection = DriverManager.getConnection(url, user, password);
+            Statement statement = connection.createStatement();
+            String query = "select * from tenant.company";
+            ResultSet resultSet = statement.executeQuery(query);
+
+            while(resultSet.next()){
+                System.out.println(resultSet.getString("name"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
         launch(args);
     }
 
@@ -62,7 +88,7 @@ public class Main extends Application {
 
         gridPane.getChildren().addAll(nameLabel, nameInput, passInput, passLabel, loginButton, signupButton);
         Scene scene = new Scene(gridPane, 300, 200);
-        scene.getStylesheets().add("tutorial_18_CSS_Themes_and_Styles/Viper.css");
+        scene.getStylesheets().add("main/Viper.css");
         window.setScene(scene);
         window.show();
 
