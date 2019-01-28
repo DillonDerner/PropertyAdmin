@@ -8,8 +8,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import main.database.resource.CompanyResource;
+import main.database.model.Company;
 
-import java.sql.*;
+import java.util.List;
+
 
 public class Main extends Application {
 
@@ -17,28 +20,9 @@ public class Main extends Application {
 
     public static void main(String[] args) {
 
-
-
-        String url = "jdbc:mysql://localhost:3306/tenant?autoReconnect=true&useSSL=false";
-        String user = "root";
-        String password = "09121992";
-
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection connection = DriverManager.getConnection(url, user, password);
-            Statement statement = connection.createStatement();
-            String query = "select * from tenant.company";
-            ResultSet resultSet = statement.executeQuery(query);
-
-            while(resultSet.next()){
-                System.out.println(resultSet.getString("name"));
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        CompanyResource companyResource = new CompanyResource();
+        List<Company> company = companyResource.getAll();
+        System.out.println("Checkpoint!");
 
         launch(args);
     }
@@ -88,7 +72,7 @@ public class Main extends Application {
 
         gridPane.getChildren().addAll(nameLabel, nameInput, passInput, passLabel, loginButton, signupButton);
         Scene scene = new Scene(gridPane, 300, 200);
-        scene.getStylesheets().add("main/Viper.css");
+        scene.getStylesheets().add("main/resources/Viper.css");
         window.setScene(scene);
         window.show();
 
